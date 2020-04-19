@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/head"></div>
+
+<body>
+
+    <h1 class="container">Könyv</h1>
+    <form class="formContanier container ml-0" action="/save" method="post">
+        <div class="form-group">
+            <label for="konyv_author">Szerző</label>
+            <input type="text" id="konyv_author" name="konyv_author" required>
+        </div>
+
+        <div class="form-group">
+            <label for="konyv_title">Cím</label>
+            <input type="text" id="konyv_title" name="konyv_title">
+        </div>
+
+        <div class="form-group">
+            <label for="konyv_year">Évjárat</label>
+            <input type="date" id="konyv_year" name="konyv_year">
+        </div>
+
+        <div class="form-group">
+            <label for="konyv_description">Tartalom</label>
+            <input type="text" id="konyv_description" name="konyv_description">
+        </div>
+
+        <div class="form-group">
+            <input class="btn btn-primary" type="submit" value="Felvitel">
+        </div>
+
+    </form>
+
+<table class="table">
+    <tr>
+        <th>Szerző</th>
+        <th>Cím</th>
+        <th>Évjárat</th>
+        <th>Tartalom</th>
+    </tr>
+
+    <tr th:each="konyv : ${konyvek}">
+        <td th:text="${konyv.getAuthor()}"></td>
+        <td th:text="${konyv.getTitle()}"></td>
+        <td th:datetime="${konyv.getYear()}"></td>
+        <td th:text="${konyv.getDescription()}"></td>
+        <td><a th:href="@{/konyv(id=${konyv.getId()})}">Megnyitás</a></td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/head"></div>
+
+<body>
+    <div class="container">
+        <h3 th:text="${konyv.getAuthor}"></h3>
+    </div>
+
+    <div class="container">
+        <h3 th:text="${konyv.getTitle}"></h3>
+    </div>
+
+    <div class="container">
+        <h2 th:text="${konyv.getYear}"></h2>
+    </div>
+
+    <div class="container">
+        <p th:text="${konyv.getDescription}"></p>
+    </div>
+
+    <form th:action="@{/delete(id=${konyv.getId()})}" method="post">
+        <div class="form-group">
+            <input class="btn btn-danger" type="submit" value="Törlés">
+        </div>
+    </form>
+
+    <a href="/">Vissza</a>
+</body>
+</html>
